@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 
 //register route
 app.get("/register", (req, res) => {
-  res.status(200).send("Register page is working");
+  res.status(200).send("Register page ok is working");
 });
 
 const PORT = 5000;
