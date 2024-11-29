@@ -1,5 +1,9 @@
 const express = require("express");
 const app = express();
+const router = require("./router/auth-router");
+
+//mount the router
+app.use("/api/auth", router);
 
 //home route
 app.get("/", (req, res) => {
