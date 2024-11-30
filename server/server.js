@@ -1,3 +1,4 @@
+require("dotenv").config(); //it allow us to use dotenv file key value o be used
 const express = require("express");
 const app = express();
 const router = require("./router/auth-router");
