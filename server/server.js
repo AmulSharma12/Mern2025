@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const router = require("./router/auth-router");
 
+// json  middleware - to process incoming request having json payload
+app.use(express.json()); 
+
 //mount the auth router
 app.use("/api/auth", router);
 
