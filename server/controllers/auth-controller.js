@@ -28,13 +28,13 @@ const register = async (req, res) => {
       return res.status(400).send({ msg: "user email already exist" });
     }
 
-    const userData = await User.create({
+    const userCreated = await User.create({
       username,
       email,
       phone,
       password: hashed_password,
     });
-    res.status(200).send({ msg: userData });
+    res.status(201).send({ msg: userCreated });
   } catch (error) {
     res.status(500).send({ msg: "Internal server error" });
   }
