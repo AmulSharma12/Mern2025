@@ -17,3 +17,4 @@ connectDB().then(() => {
     console.log(`server is listening at port: ${PORT}`);
   });
 });
+

@@ -32,13 +32,49 @@ const register = async (req, res) => {
       username,
       email,
       phone,
-      password: hashed_password,
+      password,
     });
-    res.status(201).send({ msg: userCreated });
+
+    res.status(201).send({
+      msg: "user registred successfully",
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString(),
+    });
   } catch (error) {
-    res.status(500).send({ msg: "Internal server error" });
+    res.status(500).send({ msg: "Internal server error " });
+  }
+};
+
+//---------------------**
+//User login logic
+//---------------------**
+const login = async (req, res) => {
+  const {email, password} = req.body;
+
+  //checking whether the mail exist or not
+  const userExist = await User.findOne({ email });
+
+  //if no user exist with this email
+  if (!userExist) {
+    return res.status(401).send({ msg: "Invalid credentials" });
+  }
+
+  //if user exist compare the password entered by the user and the existing password
+  const isValidPassword = await bcrypt.compare(password, userExist.password);
+
+  //if it is the valid password entered then the login is successfull otherwise invalid credentials
+  if (isValidPassword) {
+    return res.status(201).send({
+      msg: "Login successfull",
+      token: await userExist.generateToken(),
+      userId: userExist._id,
+    });
+  } else {
+    return res
+      .status(401)
+      .send({ msg: "Invalid username or password,Please try again" });
   }
 };
 
 //exporting all the controllers
-module.exports = { home, register };
+module.exports = { home, register, login };
