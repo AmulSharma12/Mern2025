@@ -60,7 +60,7 @@ const login = async (req, res) => {
   }
 
   //if user exist compare the password entered by the user and the existing password
-  const isValidPassword = await bcrypt.compare(password, userExist.password);
+  const isValidPassword = await userExist.isValidPasswordEntered(password);
 
   //if it is the valid password entered then the login is successfull otherwise invalid credentials
   if (isValidPassword) {
