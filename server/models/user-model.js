@@ -64,7 +64,7 @@ userSchema.methods.generateToken = async function () {
 //method for checking the password entered is correct or not
 userSchema.methods.isValidPasswordEntered = async function (password) {
   try {
-    return await bcrypt.compare(password, this.password);
+    return bcrypt.compare(password, this.password);
   } catch (error) {
     console.log(error);
   }

@@ -4,6 +4,7 @@ const app = express();
 const router = require("./router/auth-router");
 const connectDB = require("./utils/db");
 
+
 // json  middleware - to process incoming request having json payload
 app.use(express.json());
 

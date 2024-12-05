@@ -16,7 +16,7 @@ const home = async (req, res) => {
 };
 
 //---------------------**
-//Registration controller logic
+//User registration logic
 //---------------------**
 const register = async (req, res) => {
   try {
@@ -49,7 +49,7 @@ const register = async (req, res) => {
 //User login logic
 //---------------------**
 const login = async (req, res) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
 
   //checking whether the mail exist or not
   const userExist = await User.findOne({ email });
