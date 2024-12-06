@@ -3,13 +3,16 @@ const express = require("express");
 const app = express();
 const router = require("./router/auth-router");
 const connectDB = require("./utils/db");
-
+const errorMiddleware = require("./middlewares/error-middleware");
 
 // json  middleware - to process incoming request having json payload
 app.use(express.json());
 
 //mount the auth router
 app.use("/api/auth", router);
+
+//Integrating error middleware to application
+app.use(errorMiddleware);
 
 //listening to port 5000
 const PORT = 5000;
@@ -18,4 +21,3 @@ connectDB().then(() => {
     console.log(`server is listening at port: ${PORT}`);
   });
 });
-

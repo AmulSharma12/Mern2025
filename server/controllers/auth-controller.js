@@ -41,7 +41,8 @@ const register = async (req, res) => {
       userId: userCreated._id.toString(),
     });
   } catch (error) {
-    res.status(500).send({ msg: "Internal server error " });
+    next(error);
+    // res.status(500).send({ msg: "Internal server error " });
   }
 };
 
