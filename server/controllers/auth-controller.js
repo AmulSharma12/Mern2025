@@ -57,7 +57,11 @@ const login = async (req, res) => {
 
   //if no user exist with this email
   if (!userExist) {
-    return res.status(401).send({ msg: "Invalid credentials" });
+    const status = 401;
+    const message = "Invalid credentials";
+    const extraDetails = "user doesn't exist for this credentials";
+    const error = { status, message, extraDetails };
+    next(error);
   }
 
   //if user exist compare the password entered by the user and the existing password
@@ -71,9 +75,11 @@ const login = async (req, res) => {
       userId: userExist._id,
     });
   } else {
-    return res
-      .status(401)
-      .send({ msg: "Invalid username or password,Please try again" });
+    const status = 401;
+    const message = "Invalid credentials";
+    const extraDetails = "Invalid username or password.Please, try again";
+    const error = { status, message, extraDetails };
+    next(error);
   }
 };
 

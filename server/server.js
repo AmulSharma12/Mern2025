@@ -1,7 +1,8 @@
 require("dotenv").config(); //it allow us to use dotenv file key value o be used
 const express = require("express");
 const app = express();
-const router = require("./router/auth-router");
+const authRoute = require("./router/auth-router");
+const contactRoute = require("./router/contact-router");
 const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
@@ -9,7 +10,8 @@ const errorMiddleware = require("./middlewares/error-middleware");
 app.use(express.json());
 
 //mount the auth router
-app.use("/api/auth", router);
+app.use("/api/auth", authRoute);
+app.use("/api/form", contactRoute);
 
 //Integrating error middleware to application
 app.use(errorMiddleware);

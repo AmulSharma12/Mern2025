@@ -27,4 +27,20 @@ const signupSchema = z.object({
     }),
 });
 
-module.exports = signupSchema;
+//creating login object schema using zod
+const loginSchema = z.object({
+  email: z
+    .string({ required_error: "Must fill the email field" })
+    .trim()
+    .email({ required_error: "Invalid email address" })
+    .min(3, { message: "Email field must have 3 character" })
+    .max(255, { message: "Email field should not exceed by 255 characters" }),
+
+  password: z
+    .string({ required_error: "Must fill the password field" })
+    .trim()
+    .min(7, { message: "password must have 7 characters" })
+    .max(1024, { message: "password must have 1024 characters" }),
+});
+
+module.exports = { signupSchema, loginSchema };
