@@ -5,12 +5,15 @@ import { About } from "./pages/About";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Service } from "./pages/Service";
+import { Navbar } from "./components/Navbar/Navbar";
 
 //App component
 const App = () => {
   return (
     <>
       <BrowserRouter>
+        {/* Navbar is common for all the pages */}
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
