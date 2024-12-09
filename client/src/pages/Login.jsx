@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const Login = () => {
-  //creating state variables for Login for managing state for email and password
+  //creating state variables for Login for managing state for email and password 
   const [user, setUser] = useState({
     email: "",
     password: "",
