@@ -6,6 +6,7 @@ import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Service } from "./pages/Service";
 import { Navbar } from "./components/Navbar/Navbar";
+import { Footer } from "./components/Footer/Footer";
 
 //App component
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

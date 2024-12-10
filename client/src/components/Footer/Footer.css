@@ -1,0 +1,24 @@
+.section-footer {
+  background-color: var(--btn-color);
+  height: auto;
+}
+
+.grid-one-cols {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  text-align: center;
+}
+
+.grid-one-cols h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+  margin: 0.5rem 0rem;
+  text-transform: capitalize;
+}
+
+.grid-one-cols a {
+  cursor: pointer;
+  color: var(--bg-color);
+}

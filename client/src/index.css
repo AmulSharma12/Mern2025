@@ -43,7 +43,7 @@ textarea {
   font-size: 1.7rem;
   line-height: 1.4;
   letter-spacing: 0.1rem;
-  word-spacing: 0.1rem;
+  word-spacing: 0.12rem;
   margin-bottom: 1rem;
 }
 
@@ -76,6 +76,10 @@ li {
 
 .grid-two-cols {
   grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-four-cols {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 /* button css reusable */
@@ -120,3 +124,34 @@ a:hover a.active {
   width: 70%;
   height: auto;
 }
+
+/**************** Section - analytics ******************/
+.section-analytics {
+  margin: 9rem 5rem;
+}
+.section-analytics .container {
+  background-color: var(--bg-color);
+  border-radius: 2rem;
+}
+
+.div1 {
+  /* border: 2px solid red; */
+  color: var(--dark-color);
+  text-align: center;
+  border-right: 0.2rem solid var(--dark-color);
+}
+.div1:last-child {
+  border-right: none;
+}
+
+.div1 h2 {
+  /* border: 2px solid red; */
+  font-size: 3rem;
+}
+
+.div1 p {
+  /* border: 2px solid red; */
+  text-transform: capitalize;
+}
+
+/**************** Section - analytics END ******************/
