@@ -187,6 +187,7 @@ textarea {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  gap: 3.2rem;
 }
 
 .section-contact .form-content button {
@@ -199,6 +200,10 @@ textarea {
 
 .section-contact .form-content label {
   text-transform: capitalize;
+}
+
+.section-map iframe {
+  width: 100%;
 }
 
 /**************** Section - Contact page END ******************/
