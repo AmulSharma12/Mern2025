@@ -203,7 +203,64 @@ textarea {
 }
 
 .section-map iframe {
+  /* border: 2rem solid red; */
   width: 100%;
 }
 
 /**************** Section - Contact page END ******************/
+
+/**************** Section - Error page ******************/
+.section-error {
+  height: auto;
+  width: 80rem;
+  margin: 2rem auto;
+}
+
+.section-error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 10rem;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.sec-error-heading {
+  font-size: 15rem;
+  font-weight: bold;
+  background: linear-gradient(
+    90deg,
+    var(--btn-color),
+    var(--helper-color),
+    var(--dark-color),
+    var(--bg-color),
+    var(--dark-color),
+    var(--helper-color),
+    var(--btn-color)
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-error-container span {
+  font-size: 3rem;
+  text-transform: capitalize;
+}
+
+.sec-error-button-wrapper {
+  width: 40rem;
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sec-error-button-wrapper .erorPageBtn {
+  width: 40rem;
+  border: 2px solid var(--btn-color);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+}
+
+/**************** Section - Error page END ******************/
