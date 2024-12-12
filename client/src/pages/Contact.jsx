@@ -24,9 +24,6 @@ export const Contact = () => {
   return (
     <>
       <section className="section-contact">
-        <div className="contact-content container">
-          <h1 className="contact-content-heading">Contact Us</h1>
-        </div>
         <div className="container grid grid-two-cols">
           <div className="contact-image">
             <img
@@ -37,6 +34,7 @@ export const Contact = () => {
             ></img>
           </div>
           <section className="form-content">
+            <h1 className="contact-form-heading">Contact</h1>
             <form onSubmit={onSubmitContactForm}>
               <div>
                 <label htmlFor="username">username</label>

@@ -1,3 +1,5 @@
+import { Analytics } from "../components/Analytics/Analytics";
+
 export const Home = () => {
   return (
     <>
@@ -33,26 +35,7 @@ export const Home = () => {
           </div>
         </section>
         {/* 2nd section */}
-        <section className="section-analytics">
-          <div className="container grid grid-four-cols">
-            <div className="div1">
-              <h2>100+</h2>
-              <p>Dummy Data</p>
-            </div>
-            <div className="div1">
-              <h2>100+</h2>
-              <p>Dummy Data</p>
-            </div>
-            <div className="div1">
-              <h2>100+</h2>
-              <p>Dummy Data</p>
-            </div>
-            <div className="div1">
-              <h2>100+</h2>
-              <p>Dummy Data</p>
-            </div>
-          </div>
-        </section>
+        <Analytics />
         {/* 3rd section */}
         <section className="section-hero">
           <div className="container grid grid-two-cols">

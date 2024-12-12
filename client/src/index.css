@@ -157,9 +157,6 @@ a:hover a.active {
 /**************** Section - analytics END ******************/
 
 /**************** Section - Contact page  ******************/
-.contact-content-heading {
-  /* padding: 0 5rem; */
-}
 
 .section-contact .grid-two-cols {
   grid-template-columns: repeat(2, 1fr);
@@ -171,9 +168,11 @@ a:hover a.active {
   width: 50rem;
 }
 
-.section-contact .form-content div {
-  /* border: 2px solid red; */
+.contact-form-heading {
+  margin-bottom: 2rem;
+}
 
+.section-contact .form-content div {
   display: flex;
   flex-direction: column;
 }
@@ -264,3 +263,45 @@ textarea {
 }
 
 /**************** Section - Error page END ******************/
+
+/**************** Section - About page ******************/
+.about-parapgraph {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+/**************** Section - About page END ******************/
+
+/**************** Section - Register page  ******************/
+.registration-form div {
+  /* border: 2px solid red; */
+
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-form input,
+textarea {
+  width: 50rem;
+  height: auto;
+  border-radius: 0.1rem;
+  border: 0.2rem solid var(--btn-color);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  gap: 3.2rem;
+}
+
+.registration-form button {
+  width: 50rem;
+  height: 4rem;
+  border-radius: 0.1rem;
+  border: 0.2rem solid var(--btn-color);
+  font-weight: bold;
+}
+
+.registration-form label {
+  text-transform: capitalize;
+}
+
+/**************** Section - Register page END  ******************/
