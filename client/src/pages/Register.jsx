@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   //creating state variables to store the user date with the following four field properties and values
@@ -8,6 +9,8 @@ export const Register = () => {
     phone: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   //handling the input change event
   const handleInputChange = (e) => {
@@ -22,9 +25,29 @@ export const Register = () => {
   };
 
   //handling the submit button logic
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(user);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); //to prevent the page refresh we are using
+
+    //making register request to backend
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      //if response is ok means the request is succesfully completed
+      if (response.ok) {
+        //reseting the state variables and redirecting to login screen.
+        setUser({ username: "", email: "", phone: "", password: "" });
+        navigate("/login");
+      }
+      console.log("user registration successfull ", response);
+    } catch (error) {
+      console.log("getting issue at register ", error);
+    }
   };
 
   return (
