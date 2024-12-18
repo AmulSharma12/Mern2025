@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
+
+const URL = "http://localhost:5000/api/auth/login";
 
 export const Login = () => {
-  //creating state variables for Login for managing state for email and password 
+  //creating state variables for Login for managing state for email and password
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth(); //from useAuth Consumer getting the function reference
 
   //on change Input element updating the state variable
   const handleInputChange = (e) => {
@@ -19,9 +26,35 @@ export const Login = () => {
     });
   };
   //on submit invoke preventing default behaviour of form i.e. refresh
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+
+    //making call for login using fetch api
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (response.ok) {
+        alert("login successfully");
+        //response data sent from the server
+        const resp_data = await response.json();
+        console.log("response sent from the server ", resp_data);
+        storeTokenInLS(resp_data.token);
+
+        setUser({
+          email: "",
+          password: "",
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

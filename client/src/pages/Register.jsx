@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
+
+const URL = "http://localhost:5000/api/auth/register";
 
 export const Register = () => {
   //creating state variables to store the user date with the following four field properties and values
@@ -11,6 +14,8 @@ export const Register = () => {
   });
 
   const navigate = useNavigate();
+  //getting function reference for storing token in local storage using useAuth
+  const { storeTokenInLS } = useAuth();
 
   //handling the input change event
   const handleInputChange = (e) => {
@@ -30,7 +35,7 @@ export const Register = () => {
 
     //making register request to backend
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,6 +45,10 @@ export const Register = () => {
 
       //if response is ok means the request is succesfully completed
       if (response.ok) {
+        //response sent from the server
+        const resp_data = await response.json();
+        console.log("response sent from the server ", resp_data);
+        storeTokenInLS(resp_data.token); //storing token in localStorage
         //reseting the state variables and redirecting to login screen.
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
