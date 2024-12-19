@@ -83,5 +83,19 @@ const login = async (req, res, next) => {
   }
 };
 
+//---------------------**
+//getUserData logic - for fetching the user data using the token
+//---------------------**
+
+const getUserData = async (req, res) => {
+  try {
+    const userData = req.user;
+    return res.status(201).json({ msg: "working fine" });
+  } catch (error) {
+    console.log(`auth-controller user route issue ${error}`);
+    return res.status(201).json({ msg: "not working fine" });
+  }
+};
+
 //exporting all the controllers
-module.exports = { home, register, login };
+module.exports = { home, register, login, getUserData };
