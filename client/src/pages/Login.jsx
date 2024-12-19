@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
 
@@ -44,6 +44,7 @@ export const Login = () => {
         //response data sent from the server
         const resp_data = await response.json();
         console.log("response sent from the server ", resp_data);
+
         storeTokenInLS(resp_data.token);
 
         setUser({
