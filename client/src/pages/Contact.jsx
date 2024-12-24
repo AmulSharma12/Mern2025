@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useAuth } from "../store/auth";
 export const Contact = () => {
   //creating user for contact model state variable for managing state
   const [contact, setContact] = useState({
@@ -7,6 +7,19 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+
+  const [userDataEntry, setUserDataEntry] = useState(true);
+  const { userData } = useAuth();
+  
+  //if it is for the first time
+  if (userDataEntry && userData) {
+    setContact({
+      username: userData.username,
+      email: userData.email,
+      message: "",
+    });
+    setUserDataEntry(false); //after making the very first entry set to false
+  }
 
   //updating user on change any specific field for the user
   const handleInputChangedElement = (e) => {

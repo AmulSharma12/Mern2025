@@ -90,7 +90,7 @@ const login = async (req, res, next) => {
 const getUserData = async (req, res) => {
   try {
     const userData = req.user;
-    return res.status(201).json({ msg: "working fine" });
+    return res.status(201).json({ userData });
   } catch (error) {
     console.log(`auth-controller user route issue ${error}`);
     return res.status(201).json({ msg: "not working fine" });

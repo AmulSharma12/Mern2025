@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 //creating AuthContext from createContext
 const AuthContext = createContext();
@@ -7,6 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   //creating state for managing token
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [userData, setUserData] = useState("");
 
   //for storing token in localstorage
   const storeTokenInLS = (serverToken) => {
@@ -24,10 +25,37 @@ export const AuthProvider = ({ children }) => {
     return localStorage.removeItem("token"); //removing token from the local storage
   };
 
+  //--------- for fetching userData functionality available across all the application
+  const getUserData = async () => {
+    try {
+      if (!token) return;
+      const response = await fetch(" http://localhost:5000/api/auth/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setUserData(data.userData);
+      }
+    } catch (error) {
+      console.log(
+        `Error fetching the userData in getUserData method: ${error}`
+      );
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   //mounting children
   return (
     <AuthContext.Provider
-      value={{ storeTokenInLS, isUserLoggedIn, logOutUser }}
+      value={{ storeTokenInLS, isUserLoggedIn, logOutUser, userData }}
     >
       {children}
     </AuthContext.Provider>
