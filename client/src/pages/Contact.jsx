@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
+
+const contactURL = "http://localhost:5000/api/form/contact";
+const defaultContactFormData = {
+  username: "",
+  email: "",
+  message: "",
+};
+
 export const Contact = () => {
   //creating user for contact model state variable for managing state
-  const [contact, setContact] = useState({
-    username: "",
-    email: "",
-    message: "",
-  });
+  const [contact, setContact] = useState(defaultContactFormData);
 
   const [userDataEntry, setUserDataEntry] = useState(true);
   const { userData } = useAuth();
-  
+
   //if it is for the first time
   if (userDataEntry && userData) {
     setContact({
@@ -28,10 +32,30 @@ export const Contact = () => {
     setContact({ ...contact, [targetElement]: targetElementValue });
   };
 
-  //on submitting the contact form
-  const onSubmitContactForm = (e) => {
+  //on submitting the contact form - /api/form/contact
+  const onSubmitContactForm = async (e) => {
     e.preventDefault();
-    console.log(contact);
+
+    //on submit sending data to contact api
+    try {
+      const response = await fetch(contactURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
+
+      if (response.ok) {
+        setContact(defaultContactFormData);
+        const responseData = await response.json();
+        alert(`Message sent successfully`);
+        console.log(`Message sent successfully: ${responseData}`);
+      }
+    } catch (error) {
+      alert(`Message not delivered`);
+      console.log(`Message not delivered ${error}`);
+    }
   };
 
   return (

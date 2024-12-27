@@ -1,12 +1,15 @@
 import { Analytics } from "../components/Analytics/Analytics";
+import { useAuth } from "../store/auth";
 
 export const About = () => {
+  const { userData } = useAuth();
   return (
     <>
       {/* 1st section */}
       <section className="section-hero">
         <div className="container grid grid-two-cols">
           <div className="hero-content">
+            <h2>Welcome {userData ? userData.username : "to the website"}</h2>
             <h1>Why choose us?</h1>
             <div className="about-parapgraph">
               <p>
