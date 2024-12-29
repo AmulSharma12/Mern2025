@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const URL = "http://localhost:5000/api/auth/login";
 
@@ -42,7 +43,7 @@ export const Login = () => {
       const resp_data = await response.json();
       // console.log(respone, " and ", resp_data);
       if (response.ok) {
-        alert("login successfully");
+        toast.success("login successfully");
         //response data sent from the server
         console.log("response sent from the server ", resp_data);
 
@@ -54,7 +55,7 @@ export const Login = () => {
         });
         navigate("/");
       } else {
-        alert(
+        toast.error(
           resp_data.extraDetails ? resp_data.extraDetails : resp_data.message
         );
       }

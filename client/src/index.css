@@ -305,3 +305,9 @@ textarea {
 }
 
 /**************** Section - Register page END  ******************/
+
+/* toast dynamic alert font css */
+.toastBody {
+  font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
+  font-size: 4rem;
+}

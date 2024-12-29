@@ -65,7 +65,7 @@ const login = async (req, res, next) => {
   }
   let isValidPassword;
   //if user exist compare the password entered by the user and the existing password
-  if(userExist) {
+  if (userExist) {
     isValidPassword = await userExist.isValidPasswordEntered(password);
   }
   //if it is the valid password entered then the login is successfull otherwise invalid credentials
