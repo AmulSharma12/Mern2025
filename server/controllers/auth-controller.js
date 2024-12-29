@@ -25,7 +25,7 @@ const register = async (req, res, next) => {
 
     const userEmailExist = await User.findOne({ email });
     if (userEmailExist) {
-      return res.status(400).send({ msg: "user email already exist" });
+      return res.status(400).send({ message: "user email already exist" });
     }
 
     const userCreated = await User.create({
@@ -63,10 +63,11 @@ const login = async (req, res, next) => {
     const error = { status, message, extraDetails };
     next(error);
   }
-
+  let isValidPassword;
   //if user exist compare the password entered by the user and the existing password
-  const isValidPassword = await userExist.isValidPasswordEntered(password);
-
+  if(userExist) {
+    isValidPassword = await userExist.isValidPasswordEntered(password);
+  }
   //if it is the valid password entered then the login is successfull otherwise invalid credentials
   if (isValidPassword) {
     return res.status(201).send({

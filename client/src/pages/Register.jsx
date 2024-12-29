@@ -43,17 +43,21 @@ export const Register = () => {
         body: JSON.stringify(user),
       });
 
+      //response sent from the server
+      const resp_data = await response.json();
+      console.log("response sent from the server ", resp_data);
+
       //if response is ok means the request is succesfully completed
       if (response.ok) {
-        //response sent from the server
-        const resp_data = await response.json();
-        console.log("response sent from the server ", resp_data);
         storeTokenInLS(resp_data.token); //storing token in localStorage
         //reseting the state variables and redirecting to login screen.
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
+      } else {
+        alert(
+          resp_data.extraDetails ? resp_data.extraDetails : resp_data.message
+        );
       }
-      console.log("user registration successfull ", response);
     } catch (error) {
       console.log("getting issue at register ", error);
     }

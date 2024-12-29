@@ -39,10 +39,11 @@ export const Login = () => {
         body: JSON.stringify(user),
       });
 
+      const resp_data = await response.json();
+      // console.log(respone, " and ", resp_data);
       if (response.ok) {
         alert("login successfully");
         //response data sent from the server
-        const resp_data = await response.json();
         console.log("response sent from the server ", resp_data);
 
         storeTokenInLS(resp_data.token);
@@ -52,6 +53,10 @@ export const Login = () => {
           password: "",
         });
         navigate("/");
+      } else {
+        alert(
+          resp_data.extraDetails ? resp_data.extraDetails : resp_data.message
+        );
       }
     } catch (error) {
       console.log(error);
