@@ -4,7 +4,6 @@ const getAllUsers = async (req, res, next) => {
   try {
     //fetching all the users except password field
     const users = await User.find({}, { password: 0 });
-    console.log(users);
     if (!users || users.length === 0) {
       return res.status(404).json({ message: "user not found" });
     }
@@ -25,6 +24,7 @@ const deleteUserById = async (req, res) => {
     return res.status(200).json({ message: "User successfully deleted" });
   } catch (error) {
     console.log(`AdminController deleteUserById :${error}`);
+    next(error);
   }
 };
 
@@ -33,7 +33,6 @@ const getAllContacts = async (req, res, next) => {
   try {
     //fetching all the contacts
     const contacts = await Contact.find();
-    console.log(contacts);
     if (!contacts || contacts.length === 0) {
       return res.status(404).json({ message: "contacts not found" });
     }

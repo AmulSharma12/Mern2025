@@ -32,12 +32,12 @@ export const AdminUsers = () => {
   // deleting user
   const deleteuser = async (id) => {
     try {
-      const response = fetch(
+      const response = await fetch(
         `http://localhost:5000/api/admin/users/delete/${id}`,
         {
           method: "DELETE",
           headers: {
-            AuthrizationToken: authorizationToken,
+            Authorization: authorizationToken,
           },
         }
       );
