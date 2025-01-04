@@ -4,6 +4,7 @@ import { useAuth } from "../store/auth";
 export const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const { authorizationToken } = useAuth();
+
   const getUsersData = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/admin/users", {
@@ -27,6 +28,28 @@ export const AdminUsers = () => {
       console.log(`getUsersData method - ${error}`);
     }
   };
+
+  // deleting user
+  const deleteuser = async (id) => {
+    try {
+      const response = fetch(
+        `http://localhost:5000/api/admin/users/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            AuthrizationToken: authorizationToken,
+          },
+        }
+      );
+
+      if (response.ok) {
+        getUsersData();
+      }
+    } catch (error) {
+      console.log(`deleteuser method : ${error}`);
+    }
+  };
+
   useEffect(() => {
     getUsersData();
   }, []);
@@ -56,7 +79,11 @@ export const AdminUsers = () => {
                     <td>{currUser.email}</td>
                     <td>{currUser.phone}</td>
                     <td>Update</td>
-                    <td>Delete</td>
+                    <td>
+                      <button onClick={() => deleteuser(currUser._id)}>
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 );
               })}

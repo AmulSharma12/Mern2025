@@ -22,6 +22,7 @@ const authMiddleware = async (req, res, next) => {
     req.userId = userData._id;
   } catch (error) {
     console.log("auth-middleware : ", error);
+    
   }
 
   next();

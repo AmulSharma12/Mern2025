@@ -311,3 +311,63 @@ textarea {
   font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
   font-size: 4rem;
 }
+
+/* Admin -users css table */
+/* Table container styling */
+
+table {
+  width: 100%; /* Full-width table */
+  border-collapse: collapse; /* Remove gaps between table cells */
+  margin: 20px 0; /* Add space above and below the table */
+  font-size: 16px; /* Font size for table content */
+  font-family: Arial, sans-serif; /* Font family */
+  text-align: left; /* Align text to the left */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  overflow: hidden; /* Keep content within table bounds */
+  border-radius: 8px; /* Rounded corners for the table */
+}
+
+/* Table header styling */
+thead {
+  background-color: var(--btn-color); /* Green background */
+  color: white; /* White text color */
+}
+
+thead th {
+  padding: 12px; /* Add padding to header cells */
+  text-transform: uppercase; /* Uppercase text */
+  font-weight: bold; /* Bold font */
+}
+
+/* Table body styling */
+tbody tr {
+  border-bottom: 1px solid #ddd; /* Add bottom border to rows */
+}
+
+tbody tr:hover {
+  background-color: var(--dark-color); /* Highlight row on hover */
+  color: var(--helper-color);
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Table data cell styling */
+td {
+  padding: 12px; /* Add padding to table data cells */
+  border-right: 1px solid #ddd; /* Add right border */
+}
+
+td:last-child {
+  border-right: none; /* Remove right border for the last cell */
+}
+
+/* Responsive table styling */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px; /* Smaller font size for smaller screens */
+  }
+
+  td,
+  th {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}

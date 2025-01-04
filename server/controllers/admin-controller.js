@@ -16,6 +16,18 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+//deleting user by their id
+const deleteUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    await User.deleteOne({ _id: id });
+    return res.status(200).json({ message: "User successfully deleted" });
+  } catch (error) {
+    console.log(`AdminController deleteUserById :${error}`);
+  }
+};
+
 //getAllContacts functionality
 const getAllContacts = async (req, res, next) => {
   try {
@@ -33,4 +45,4 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts };
+module.exports = { getAllUsers, getAllContacts, deleteUserById };
