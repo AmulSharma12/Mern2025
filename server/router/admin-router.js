@@ -7,6 +7,7 @@ const {
   getAllContacts,
   deleteUserById,
   getUserById,
+  updateUserById,
 } = require("../controllers/admin-controller");
 
 //creating routes for admin
@@ -18,6 +19,10 @@ router.route("/contacts").get(authMiddleware, adminMiddleware, getAllContacts);
 
 //for update - getting user by id
 router.route("/users/:id").get(authMiddleware, adminMiddleware, getUserById);
+//for update - updating user for that userId
+router
+  .route("/users/update/:id")
+  .patch(authMiddleware, adminMiddleware, updateUserById);
 
 //exporting the admin router
 module.exports = router;

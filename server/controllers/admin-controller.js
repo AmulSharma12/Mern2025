@@ -44,7 +44,7 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-// for update - getting user by id
+// update functionality - getting user by id
 const getUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -56,4 +56,28 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
+//update functionality - updating user through their id
+const updateUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id; //getting id from the url
+    const updatedUserData = req.body; //data sent from the frontend
+    const updatedUser = await User.updateOne(
+      { _id: id },
+      {
+        $set: updatedUserData,
+      }
+    ); //filter out then update using $set
+    return res.status(200).json(updatedUser);
+  } catch (error) {
+    console.log(`Admin update functionality - ${error}`);
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getAllContacts,
+  deleteUserById,
+  getUserById,
+  updateUserById,
+};
