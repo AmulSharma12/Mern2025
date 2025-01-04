@@ -44,4 +44,16 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById };
+// for update - getting user by id
+const getUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const data = await User.findOne({ _id: id }, { password: 0 });
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.log(`error - ${error}`);
+    next(error);
+  }
+};
+
+module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
