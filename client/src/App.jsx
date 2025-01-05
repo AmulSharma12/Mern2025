@@ -12,6 +12,7 @@ import { Logout } from "./pages/Logout";
 import { AdminLayout } from "./components/layouts/AdminLayout";
 import { AdminUsers } from "./pages/AdminUsers";
 import { AdminContacts } from "./pages/AdminContacts";
+import { AdminUserUpdate } from "./pages/AdminUserUpdate";
 
 //App component
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="users" element={<AdminUsers />} />
+            <Route path="users/:id/edit" element={<AdminUserUpdate />} />
             <Route path="contacts" element={<AdminContacts />} />
           </Route>
           <Route path="*" element={<Error />} />
