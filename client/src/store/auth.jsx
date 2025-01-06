@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
 
   //for checking whether the user is logged in or not
   let isUserLoggedIn = !!token;
-  console.log("isUserLoggedIn ", isUserLoggedIn);
 
   //logOutUser functionality
   const logOutUser = () => {
@@ -42,7 +41,6 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         setUserData(data.userData);
         setIsLoadingState(false);
       }
@@ -62,7 +60,6 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const servicesData = await response.json();
-        console.log(`Services fetched succesfully: ${servicesData}`);
         setServices(servicesData);
       }
     } catch (error) {
@@ -98,7 +95,6 @@ export const AuthProvider = ({ children }) => {
 //creating Auth Consumer
 export const useAuth = () => {
   const authProviderValue = useContext(AuthContext);
-  console.log("authProviderValue ", authProviderValue);
   if (authProviderValue == null) {
     throw new Error("Mount AuthProvider outside the App.jsx");
   }
