@@ -19,7 +19,6 @@ const getAllUsers = async (req, res, next) => {
 const deleteUserById = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id);
     await User.deleteOne({ _id: id });
     return res.status(200).json({ message: "User successfully deleted" });
   } catch (error) {
@@ -49,7 +48,6 @@ const getUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
     const data = await User.findOne({ _id: id }, { password: 0 });
-    console.log(data);
     return res.status(200).json({ data });
   } catch (error) {
     console.log(`error - ${error}`);
@@ -75,10 +73,23 @@ const updateUserById = async (req, res, next) => {
   }
 };
 
+//for deleting the contact from admin
+const deleteContactById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Contact.deleteOne({ _id: id });
+    return res.status(200).json({ message: "User contact deleted" });
+  } catch (error) {
+    console.log(`Admin Contact delete failed - ${error}`);
+    next(error);
+  }
+};
+
 module.exports = {
   getAllUsers,
   getAllContacts,
   deleteUserById,
   getUserById,
   updateUserById,
+  deleteContactById,
 };

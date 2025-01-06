@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const contactURL = "http://localhost:5000/api/form/contact";
 const defaultContactFormData = {
@@ -49,11 +50,11 @@ export const Contact = () => {
       if (response.ok) {
         setContact(defaultContactFormData);
         const responseData = await response.json();
-        alert(`Message sent successfully`);
+        toast.success(`Message sent successfully`);
         console.log(`Message sent successfully: ${responseData}`);
       }
     } catch (error) {
-      alert(`Message not delivered`);
+      toast.error(`Message not delivered`);
       console.log(`Message not delivered ${error}`);
     }
   };

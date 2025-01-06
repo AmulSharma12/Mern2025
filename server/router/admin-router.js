@@ -8,6 +8,7 @@ const {
   deleteUserById,
   getUserById,
   updateUserById,
+  deleteContactById,
 } = require("../controllers/admin-controller");
 
 //creating routes for admin
@@ -16,6 +17,10 @@ router
   .route("/users/delete/:id")
   .delete(authMiddleware, adminMiddleware, deleteUserById);
 router.route("/contacts").get(authMiddleware, adminMiddleware, getAllContacts);
+//for delete contact
+router
+  .route("/contacts/delete/:id")
+  .delete(authMiddleware, adminMiddleware, deleteContactById);
 
 //for update - getting user by id
 router.route("/users/:id").get(authMiddleware, adminMiddleware, getUserById);
